@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6DF39195-45B1-4AC5-AD07-0AA860A8C47A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastucture", "Infrastucture", "{EAAB7598-FE7D-4722-9D09-36ECCE737FAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{798F7AAD-F717-400E-BC3E-621F429FADA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.WebApi", "MeetupManager.WebApi\MeetupManager.WebApi.csproj", "{55BA5F37-708D-4168-817E-0760ADD3EC48}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Domain", "MeetupManager.Domain\MeetupManager.Domain.csproj", "{C631D61E-E86C-4804-8E8C-A2CB95BC012E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Application", "MeetupManager.Application\MeetupManager.Application.csproj", "{B82B2425-FF3F-400D-833B-5C7A4FB2A218}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Persistence", "MeetupManager.Persistence\MeetupManager.Persistence.csproj", "{5C1E8D51-DA97-496D-BB46-65BB584C18DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetupManager.Identity", "MeetupManager.Identity\MeetupManager.Identity.csproj", "{A3525914-8AA8-4735-8302-EDD9ACF89877}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55BA5F37-708D-4168-817E-0760ADD3EC48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55BA5F37-708D-4168-817E-0760ADD3EC48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55BA5F37-708D-4168-817E-0760ADD3EC48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55BA5F37-708D-4168-817E-0760ADD3EC48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C631D61E-E86C-4804-8E8C-A2CB95BC012E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C631D61E-E86C-4804-8E8C-A2CB95BC012E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C631D61E-E86C-4804-8E8C-A2CB95BC012E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C631D61E-E86C-4804-8E8C-A2CB95BC012E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82B2425-FF3F-400D-833B-5C7A4FB2A218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82B2425-FF3F-400D-833B-5C7A4FB2A218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82B2425-FF3F-400D-833B-5C7A4FB2A218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82B2425-FF3F-400D-833B-5C7A4FB2A218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C1E8D51-DA97-496D-BB46-65BB584C18DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C1E8D51-DA97-496D-BB46-65BB584C18DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C1E8D51-DA97-496D-BB46-65BB584C18DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C1E8D51-DA97-496D-BB46-65BB584C18DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3525914-8AA8-4735-8302-EDD9ACF89877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3525914-8AA8-4735-8302-EDD9ACF89877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3525914-8AA8-4735-8302-EDD9ACF89877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3525914-8AA8-4735-8302-EDD9ACF89877}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55BA5F37-708D-4168-817E-0760ADD3EC48} = {798F7AAD-F717-400E-BC3E-621F429FADA5}
+		{C631D61E-E86C-4804-8E8C-A2CB95BC012E} = {6DF39195-45B1-4AC5-AD07-0AA860A8C47A}
+		{B82B2425-FF3F-400D-833B-5C7A4FB2A218} = {6DF39195-45B1-4AC5-AD07-0AA860A8C47A}
+		{5C1E8D51-DA97-496D-BB46-65BB584C18DA} = {EAAB7598-FE7D-4722-9D09-36ECCE737FAD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE877A96-93F2-401E-AE61-6FA2892314E7}
+	EndGlobalSection
+EndGlobal
