@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Application",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Persistence", "MeetupManager.Persistence\MeetupManager.Persistence.csproj", "{5C1E8D51-DA97-496D-BB46-65BB584C18DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetupManager.Identity", "MeetupManager.Identity\MeetupManager.Identity.csproj", "{A3525914-8AA8-4735-8302-EDD9ACF89877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupManager.Identity", "MeetupManager.Identity\MeetupManager.Identity.csproj", "{A3525914-8AA8-4735-8302-EDD9ACF89877}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

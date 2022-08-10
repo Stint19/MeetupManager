@@ -1,4 +1,5 @@
 using System.Reflection;
+using IdentityServer4.AccessTokenValidation;
 using MeetupManager.Application;
 using MeetupManager.Application.Common.Mappings;
 using MeetupManager.Application.Interfaces;
@@ -20,35 +21,21 @@ builder.Services.AddSwaggerGen(config =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     config.IncludeXmlComments(xmlPath);
-    config.AddSecurityDefinition($"AuthToken 1",
-        new OpenApiSecurityScheme
-        {
-            In = ParameterLocation.Header,
-            Type = SecuritySchemeType.Http,
-            BearerFormat = "JWT",
-            Scheme = "bearer",
-            Name = "Authorization",
-            Description = "Auth token"
-        });
-    config.AddSecurityRequirement(new OpenApiSecurityRequirement
+    config.AddSecurityDefinition("oAuth2", new OpenApiSecurityScheme
     {
+        Type = SecuritySchemeType.OAuth2,
+        Flows = new OpenApiOAuthFlows
         {
-            new OpenApiSecurityScheme
+            Password = new OpenApiOAuthFlow
             {
-                Reference = new OpenApiReference
+                TokenUrl = new Uri("https://localhost:7216/connect/token"),
+                Scopes = new Dictionary<string, string>
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "AuthToken 1"
+                    { "MeetupAPI", "Meetup Api"}
                 }
-            },
-            new string[] { }
+            }
         }
-    });
-
-    config.CustomOperationIds(apiDescription => 
-        apiDescription.TryGetMethodInfo(out MethodInfo methodInfo)
-        ? methodInfo.Name
-        : null);
+    });    
 });
 builder.Services.AddApplication();
 builder.Services.AddPersistance(builder.Configuration);
@@ -62,6 +49,7 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("AllowAll", policy =>
     {
+        policy.WithOrigins("https://localhost:7216");
         policy.AllowAnyHeader();
         policy.AllowAnyMethod();
         policy.AllowAnyOrigin();
@@ -69,26 +57,33 @@ builder.Services.AddCors(opt =>
 });
 
 
-builder.Services.AddAuthentication(config =>
+builder.Services.AddAuthentication(options =>
 {
-    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
+    options.DefaultScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultAuthenticateScheme = IdentityServerAuthenticationDefaults.AuthenticationScheme;
 })
-    .AddJwtBearer("Bearer", options =>
+    .AddIdentityServerAuthentication(options =>
     {
-        options.Authority = "https://localhost:7216/";
-        options.Audience = "MeetupWebAPI";
+        options.ApiName = "MeetupAPI";
+        options.Authority = "https://localhost:7216";
         options.RequireHttpsMetadata = false;
     });
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseCors("AllowAll");
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.OAuthClientId("meetup-web-api");
+        options.OAuthClientSecret("client_secret_meetup");
+    });
 }
 
 using (var scope = app.Services.CreateScope())
@@ -105,7 +100,7 @@ using (var scope = app.Services.CreateScope())
 
 }
 
-app.UseCors("AllowAll");
+
 
 app.UseHttpsRedirection();
 

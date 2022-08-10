@@ -9,7 +9,7 @@ namespace MeetupManager.Identity
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
-                new ApiScope("MeetupWebAPI", "Web API")
+                new ApiScope("MeetupAPI", "Web API")
             };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -22,10 +22,7 @@ namespace MeetupManager.Identity
         public static IEnumerable<ApiResource> ApiResources =>
             new List<ApiResource>
             {
-                new ApiResource("MeetupWebAPI", "Web API", new [] { JwtClaimTypes.Name })
-                {
-                    Scopes = {"MeetupWebAPI"}
-                }
+                new ApiResource("MeetupAPI")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -34,29 +31,16 @@ namespace MeetupManager.Identity
                 new Client
                 {
                     ClientId = "meetup-web-api",
-                    ClientName = "Meetup Web",
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequireClientSecret = false,
-                    RequirePkce = true,
-                    RedirectUris =
-                    {
-                        "https://localhost:7186/signin-oidc"
-                    },
-                    AllowedCorsOrigins =
-                    {
-                        "https://localhost:7186/"
-                    },
-                    PostLogoutRedirectUris =
-                    {
-                        "https://localhost:7186/signout-oidc"
-                    },
+                    ClientSecrets = { new Secret("client_secret_meetup".ToSha256()) },
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    
+                    AllowedCorsOrigins = { "https://localhost:7186", "http://localhost:5186" },
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "MeetupWebAPI"
-                    },
-                    AllowAccessTokensViaBrowser = true
+                        "MeetupAPI"
+                    }
                 }
             };
     }

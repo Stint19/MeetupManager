@@ -57,6 +57,8 @@ using (var scope = app.Services.CreateScope())
 
 }
 
+app.UseIdentityServer();
+
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {

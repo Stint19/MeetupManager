@@ -52,7 +52,7 @@ namespace MeetupManager.Identity.Controllers
                 viewModel.Password, false, false);
             if (result.Succeeded)
             {
-                return Redirect(viewModel.ReturnUrl);
+                return View(viewModel);
             }
             ModelState.AddModelError(string.Empty, "Login error");
             return View(viewModel);
@@ -85,7 +85,7 @@ namespace MeetupManager.Identity.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return Redirect(viewModel.ReturnUrl);
+                return View(viewModel);
             }
             ModelState.AddModelError(string.Empty, "Error occured");
             return View(viewModel);

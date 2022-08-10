@@ -14,7 +14,7 @@ namespace MeetupManager.WebApi.Controllers
             _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
         internal Guid UserId => !User.Identity.IsAuthenticated
-            ? Guid.Empty
+            ? Guid.Parse("2EB57FD8-35E5-4471-BC0B-FD0D391C4487")
             : Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
     }
 }
